@@ -49,20 +49,19 @@ LISTEN 是稳态。所有其他模式都是临时偏离，最终回归 LISTEN。
 
 ### Claude Code
 
-1. 将 `claude-code/CLAUDE.md` 的内容复制到你项目的 `CLAUDE.md` 文件中。
+1. 将 `claude-code/listener/` 和 `claude-code/listener-stop/` 文件夹复制到你的技能目录：
+   ```
+   ~/.claude/skills/
+   ```
 
-2. 或使用 `/listener` 在 Claude Code 中激活聆听模式。
+2. 在任意 Claude Code 会话中，输入 `/listener` 进入聆听模式。
 
-3. 使用 `/listener-stop` 退出。
-
+3. 输入 `/listener-stop` 退出。
 ### 其他 AI 工具
 
-1. 复制 `listener-loop.md` 的内容。
+1. 将 `listener-loop.md` 作为技能文件使用。复制到你的 AI 工具的技能目录，或将其作为技能模板。
 
-2. 将其粘贴为你的 AI 工具的系统提示词或自定义指令。
-
-3. 循环立即开始。通过结束会话或移除提示词退出。
-
+2. 循环立即开始。通过结束会话或移除技能退出。
 ---
 
 ## 一键部署
@@ -75,8 +74,8 @@ LISTEN 是稳态。所有其他模式都是临时偏离，最终回归 LISTEN。
 步骤：
 1. 克隆仓库：git clone https://github.com/gg686-jkl/listener-skill.git
 2. 对于 OpenCode：将 opencode/listener/ 和 opencode/listener-stop/ 文件夹复制到 ~/.config/opencode/skills/
-3. 对于 Claude Code：将 claude-code/CLAUDE.md 的内容复制到我项目的 CLAUDE.md 文件中
-4. 对于其他 AI 工具：使用 listener-loop.md 作为系统提示词
+3. 对于 Claude Code：将 claude-code/listener/ 和 claude-code/listener-stop/ 文件夹复制到 ~/.claude/skills/
+4. 对于其他 AI 工具：使用 listener-loop.md 作为技能文件
 5. 确认部署完成，我可以通过 /listener 开始使用
 ```
 
@@ -92,9 +91,12 @@ listener-skill/
 ├── README_zh.md           # 中文文档
 ├── LICENSE                 # MIT 许可证
 ├── Listener.md             # 原始 MVP 规范
-├── listener-loop.md        # 工具无关的核心提示词
+├── listener-loop.md        # 工具无关的技能模板
 ├── claude-code/
-│   └── CLAUDE.md           # Claude Code 自定义指令
+│   ├── listener/
+│   │   └── SKILL.md        # Claude Code 技能（进入聆听模式）
+│   └── listener-stop/
+│       └── SKILL.md        # Claude Code 技能（退出聆听模式）
 └── opencode/
     ├── listener/
     │   └── SKILL.md        # OpenCode 技能（进入聆听模式）
@@ -149,8 +151,8 @@ listener-skill/
 | 格式 | 文件 | 使用场景 |
 |--------|------|----------|
 | OpenCode 技能 | `opencode/listener/SKILL.md` | 原生 OpenCode 集成，含 YAML 前置元数据 |
-| Claude Code | `claude-code/CLAUDE.md` | Claude Code 自定义指令 |
-| 工具无关 | `listener-loop.md` | 任意 AI 工具的系统提示词 |
+| Claude Code 技能 | `claude-code/listener/SKILL.md` | 原生 Claude Code 集成，含 YAML 前置元数据 |
+| 工具无关 | `listener-loop.md` | 任意 AI 工具的技能模板 |
 
 三种格式包含完全一致的行为规范。核心提示词（6 个部分：核心原则、内部状态模型、决策引擎、模式定义、禁止行为、循环保证）在所有格式中精准保留。
 

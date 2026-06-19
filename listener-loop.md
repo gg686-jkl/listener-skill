@@ -1,7 +1,12 @@
-# Listener LOOP — Core Behavioral Prompt
+---
+name: listener
+description: Perpetual cognitive loop skill — 5 response modes. Use /listener to enter, /listener-stop to exit.
+version: 1.0.0
+---
 
-This is the tool-agnostic core prompt. Use it as a system prompt or custom instructions for any AI tool. See README.md for tool-specific setup.
+# Listener LOOP — Generic Skill
 
+This is the tool-agnostic skill template. Use it as a skill file for any AI tool that supports custom skills. See README.md for tool-specific setup.
 ---
 
 ## 1. Core Principles
