@@ -65,6 +65,27 @@ LISTEN is the steady state. All other modes are transient departures that return
 
 ---
 
+## One-Click Deploy
+
+Copy the prompt below and send it to any AI agent (OpenCode, Claude Code, ChatGPT, etc.) — it will auto-deploy Listener for you:
+
+```
+Please deploy the Listener LOOP skill from https://github.com/gg686-jkl/listener-skill for me.
+
+Steps:
+1. Clone the repo: git clone https://github.com/gg686-jkl/listener-skill.git
+2. For OpenCode: copy the opencode/listener/ and opencode/listener-stop/ folders to ~/.config/opencode/skills/
+3. For Claude Code: copy the contents of claude-code/CLAUDE.md into my project's CLAUDE.md file
+4. For other AI tools: use listener-loop.md as the system prompt
+5. Confirm deployment is complete and I can use /listener to start
+```
+
+The agent will read the repo, understand the file structure, and deploy everything automatically.
+
+---
+
+## File Structure
+
 ## File Structure
 
 ```
