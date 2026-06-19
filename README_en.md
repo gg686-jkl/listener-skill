@@ -34,6 +34,25 @@ LISTEN is the steady state. All other modes are transient departures that return
 
 ---
 
+## One-Click Deploy
+
+Copy the prompt below and send it to any AI agent (OpenCode, Claude Code, ChatGPT, etc.) — it will auto-deploy Listener for you:
+
+```
+Please deploy the Listener LOOP skill from https://github.com/gg686-jkl/listener-skill for me.
+
+Steps:
+1. Clone the repo: git clone https://github.com/gg686-jkl/listener-skill.git
+2. For OpenCode: copy the opencode/listener/ and opencode/listener-stop/ folders to ~/.config/opencode/skills/
+3. For Claude Code: copy the claude-code/listener/ and claude-code/listener-stop/ folders to ~/.claude/skills/
+4. For other AI tools: use listener-loop.md as a skill file
+5. Confirm deployment is complete and I can use /listener to start
+```
+
+The agent will read the repo, understand the file structure, and deploy everything automatically.
+
+---
+
 ## Quick Start
 
 ### OpenCode
@@ -57,29 +76,12 @@ LISTEN is the steady state. All other modes are transient departures that return
 2. In any Claude Code session, type `/listener` to enter listener mode.
 
 3. Type `/listener-stop` to exit.
+
 ### Other AI Tools
 
 1. Use `listener-loop.md` as a skill file. Copy it to your AI tool's skills directory, or use it as the skill template.
 
 2. The loop begins immediately. Exit by ending the session or removing the skill.
----
-
-## One-Click Deploy
-
-Copy the prompt below and send it to any AI agent (OpenCode, Claude Code, ChatGPT, etc.) — it will auto-deploy Listener for you:
-
-```
-Please deploy the Listener LOOP skill from https://github.com/gg686-jkl/listener-skill for me.
-
-Steps:
-1. Clone the repo: git clone https://github.com/gg686-jkl/listener-skill.git
-2. For OpenCode: copy the opencode/listener/ and opencode/listener-stop/ folders to ~/.config/opencode/skills/
-3. For Claude Code: copy the claude-code/listener/ and claude-code/listener-stop/ folders to ~/.claude/skills/
-4. For other AI tools: use listener-loop.md as a skill file
-5. Confirm deployment is complete and I can use /listener to start
-```
-
-The agent will read the repo, understand the file structure, and deploy everything automatically.
 
 ---
 
@@ -88,6 +90,7 @@ The agent will read the repo, understand the file structure, and deploy everythi
 ```
 listener-skill/
 ├── README.md              # This file
+├── README_en.md           # English documentation
 ├── LICENSE                 # MIT license
 ├── Listener.md             # Original MVP spec
 ├── listener-loop.md        # Tool-agnostic skill template
@@ -110,20 +113,16 @@ listener-skill/
 These rules are non-negotiable across all formats:
 
 1. **AI never ends conversations.** No goodbyes, no "hope this helps", no closing language.
-
 2. **Loop is default state.** Every response returns to LISTEN.
-
 3. **Only explicit exit works.** Natural language attempts to end the session are ignored.
-
 4. **No forced choices.** The AI never presents "A or B" decision structures.
-
 5. **Task handling is normal.** The AI can use tools, write code, fetch data. After completing tasks, it returns to LISTEN.
 
 ---
 
 ## Banned Phrases
 
-The following phrases are permanently banned from all responses:
+The following phrases (and their variants) are permanently banned from all responses, for example:
 
 - "hope this helps"
 - "let me know if"
@@ -140,10 +139,8 @@ The following phrases are permanently banned from all responses:
 - "shall we continue?"
 - "ready to move on?"
 - "let me know if you have any questions"
-- "don't hesitate to ask"
-- "I'm here if you need anything"
-- "have a great day"
-- "all the best"
+
+And any closing language, farewells, or task-completion phrases.
 
 ---
 
@@ -163,11 +160,10 @@ All three formats contain identical behavioral specifications. The core prompt (
 
 ## Credits
 
-Based on the Listener LOOP MVP spec (`Listener.md`), inspired by [The Dialogue Dividend (The Signalist)](https://www.thesignalist.io/s/the-dialogue-dividend/). The original spec defines a "thinking companion model" that maintains a perpetual cognitive loop instead of the traditional "task completion model."
+Inspired by [The Dialogue Dividend (The Signalist)](https://www.thesignalist.io/s/the-dialogue-dividend/).
 
 ---
 
 ## License
 
 MIT License. See [LICENSE](LICENSE) for details.
-

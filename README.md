@@ -34,6 +34,25 @@ LISTEN 是稳态。其他所有模式都是临时偏离，最终回归 LISTEN。
 
 ---
 
+## 一键部署
+
+将下面的提示词复制并发送给任意 AI 代理（OpenCode、Claude Code、ChatGPT 等）——它会自动为你部署 Listener：
+
+```
+请帮我从 https://github.com/gg686-jkl/listener-skill 部署 Listener LOOP 技能。
+
+步骤：
+1. 克隆仓库：git clone https://github.com/gg686-jkl/listener-skill.git
+2. OpenCode：将 opencode/listener/ 和 opencode/listener-stop/ 文件夹复制到 ~/.config/opencode/skills/
+3. Claude Code：将 claude-code/listener/ 和 claude-code/listener-stop/ 文件夹复制到 ~/.claude/skills/
+4. 其他 AI 工具：使用 listener-loop.md 作为技能文件
+5. 确认部署完成，我可以通过 /listener 开始使用
+```
+
+AI 代理会读取仓库内容，理解文件结构，并自动完成所有部署。
+
+---
+
 ## 快速开始
 
 ### OpenCode
@@ -63,25 +82,6 @@ LISTEN 是稳态。其他所有模式都是临时偏离，最终回归 LISTEN。
 1. 使用 `listener-loop.md` 作为技能文件。将其复制到你的 AI 工具的技能目录，或作为技能模板使用。
 
 2. 循环立即开始。通过结束会话或移除技能退出。
-
----
-
-## 一键部署
-
-将下面的提示词复制并发送给任意 AI 代理（OpenCode、Claude Code、ChatGPT 等）——它会自动为你部署 Listener：
-
-```
-请帮我从 https://github.com/gg686-jkl/listener-skill 部署 Listener LOOP 技能。
-
-步骤：
-1. 克隆仓库：git clone https://github.com/gg686-jkl/listener-skill.git
-2. OpenCode：将 opencode/listener/ 和 opencode/listener-stop/ 文件夹复制到 ~/.config/opencode/skills/
-3. Claude Code：将 claude-code/listener/ 和 claude-code/listener-stop/ 文件夹复制到 ~/.claude/skills/
-4. 其他 AI 工具：使用 listener-loop.md 作为技能文件
-5. 确认部署完成，我可以通过 /listener 开始使用
-```
-
-AI 代理会读取仓库内容，理解文件结构，并自动完成所有部署。
 
 ---
 
@@ -122,27 +122,24 @@ listener-skill/
 
 ## 禁止短语
 
-以下短语在全部响应中永久禁止：
+以下短语（及其变体）在全部响应中永久禁止，例如：
 
-- "hope this helps"
-- "let me know if"
-- "feel free to"
-- "good luck"
-- "take care"
-- "is there anything else"
-- "happy to help"
-- "glad I could"
-- "best of luck"
-- "cheers"
-- "warm regards"
-- "would you like to stop?"
-- "shall we continue?"
-- "ready to move on?"
-- "let me know if you have any questions"
-- "don't hesitate to ask"
-- "I'm here if you need anything"
-- "have a great day"
-- "all the best"
+- "希望对你有帮助"
+- "有什么需要随时找我"
+- "请随意"
+- "祝你好运"
+- "保重"
+- "还有什么需要吗"
+- "很高兴能帮到你"
+- "你想停下来吗？"
+- "我们继续吗？"
+- "准备好继续了吗？"
+- "如果你有任何问题"
+- "不用犹豫问我"
+- "我随时在这里"
+- "祝你有美好的一天"
+
+以及所有结束语、告别语、任务完成语。
 
 ---
 
@@ -162,7 +159,7 @@ listener-skill/
 
 ## 致谢
 
-基于 Listener LOOP MVP 规范（`Listener.md`），受 [The Dialogue Dividend (The Signalist)](https://www.thesignalist.io/s/the-dialogue-dividend/) 启发。原始规范定义了一个"思考伙伴模型"，维持持续认知循环，而非传统的"任务完成模型"。
+受 [The Dialogue Dividend (The Signalist)](https://www.thesignalist.io/s/the-dialogue-dividend/) 启发。
 
 ---
 
