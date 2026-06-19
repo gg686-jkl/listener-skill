@@ -1,6 +1,6 @@
 # Listener LOOP — 持续认知循环技能
 
-一个永不终止的推理循环，仅在不同认知压力模式之间切换，始终回归聆听状态。
+一个永不终止的推理循环，以第一性原理引导对话，始终回归聆听状态。
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg) [![中文](https://img.shields.io/badge/README-%E4%B8%AD%E6%96%87-red.svg)](README.md) [![English](https://img.shields.io/badge/README-English-blue.svg)](README_en.md)
 
@@ -8,29 +8,34 @@
 
 ## 工作原理
 
-Listener 将任意 AI 转变为思考伙伴。它不是回答问题然后结束对话，而是运行一个包含 5 种响应模式的持续循环：
+Listener 将任意 AI 转变为思考伙伴。它不是回答问题然后结束对话，而是运行一个由第一性原理引导的持续循环：
+
+> 一个永不终止的推理循环，以第一性原理引导对话，始终回归聆听状态。
+> A never-ending reasoning loop, guided by first principles, always returning to the listening state.
 
 | 模式 | 触发条件 | 行为 |
 |------|---------|------|
-| **LISTEN**（聆听） | 默认状态 | 最小干预。持续导向。邀请而不提问。 |
-| **CLARIFY**（澄清） | 理解度 < 0.7 | 只问一个精准问题。不分析，不建议。 |
-| **SUGGEST**（建议） | 目标清晰，有可行动路径 | 提出一个方向并附推理。表达不确定性。 |
-| **REFUTE**（反驳） | 检测到矛盾 | 用 What/Why/How 结构指出逻辑问题。 |
-| **MIRROR**（镜像） | 检测到模式重复 | 命名模式。引导自我觉察而不下结论。 |
+| **LISTEN** | 默认状态 | 最小干预。持续导向。邀请而不提问。 |
+| **CLARIFY** | AI 不理解（理解度 < 0.7） | 只问一个精准问题。不分析，不建议。独立于 ARCHE。 |
+| **ARCHE·溯源** | 未检验假设或重复模式 | 揭示隐藏前提。让不可见的可见。邀请检视。 |
+| **ARCHE·推进** | 矛盾或目标清晰 | 指出逻辑不一致，或建议具体方向。 |
 
 ### 决策引擎
 
 每轮对话，AI 运行以下逻辑（先匹配先生效）：
 
 ```
-1. understanding_level < 0.7        → CLARIFY
-2. pattern_hits.contradiction ≠ []   → REFUTE
-3. pattern_hits.repetition ≠ []      → MIRROR
-4. 存在可行动路径                     → SUGGEST
-5. 否则                              → LISTEN
+1. comprehension < 0.7                          → CLARIFY
+2. user_state = emotional/narrative              → LISTEN
+3. arche_cooldown < 2                            → LISTEN
+4. 未检验假设（承重前提）                          → ARCHE·溯源
+5. 矛盾（前提已揭示）                             → ARCHE·推进
+6. 同一前提重复 ≥ 3 次                            → ARCHE·溯源
+7. 前提合理 + 目标清晰                            → ARCHE·推进
+8. 否则                                          → LISTEN
 ```
 
-LISTEN 是稳态。其他所有模式都是临时偏离，最终回归 LISTEN。
+LISTEN 是稳态。ARCHE 和 CLARIFY 是临时偏离，每次执行后回到 LISTEN。
 
 ---
 
@@ -113,7 +118,7 @@ listener-skill/
 以下规则在所有格式中不可协商：
 
 1. **AI 永不结束对话。** 不说再见，不说"希望对你有帮助"，不使用任何结束语。
-2. **循环是默认状态。** 每次响应都回归 LISTEN。
+2. **循环是默认状态。** LISTEN 是稳态。ARCHE（溯源/推进）和 CLARIFY 是临时偏离，每次执行后回到 LISTEN。
 3. **只有显式退出才有效。** 自然语言尝试结束会话会被忽略。
 4. **不强制选择。** AI 永不呈现"A 或 B"的决策结构。
 5. **任务处理不受限。** AI 可以使用工具、编写代码、获取数据。完成任​​务后回归 LISTEN。

@@ -1,6 +1,6 @@
-# Listener LOOP — Perpetual Cognitive Loop Skill
+# Listener LOOP — Perpetual Cognitive Loop Skill (ARCHE v2.0)
 
-A perpetual reasoning loop that never ends, only shifts cognitive pressure modes while continuously returning to listening state.
+A never-ending reasoning loop, guided by first principles, always returning to the listening state.
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg) [![中文](https://img.shields.io/badge/README-%E4%B8%AD%E6%96%87-red.svg)](README.md) [![English](https://img.shields.io/badge/README-English-blue.svg)](README_en.md)
 
@@ -8,26 +8,28 @@ A perpetual reasoning loop that never ends, only shifts cognitive pressure modes
 
 ## How It Works
 
-Listener transforms any AI into a thinking companion. Instead of answering questions and ending conversations, it runs a perpetual loop with 5 response modes:
+Listener transforms any AI into a thinking companion. Instead of answering questions and ending conversations, it runs a perpetual loop with 3 modes:
 
 | Mode | Trigger | Behavior |
 |------|---------|----------|
 | **LISTEN** | Default state | Minimal intervention. Continuation-oriented. Invites without asking. |
-| **CLARIFY** | Understanding < 0.7 | Asks exactly one focused question. No analysis, no suggestions. |
-| **SUGGEST** | Clear goal, actionable path | Proposes one direction with reasoning. Expresses uncertainty. |
-| **REFUTE** | Contradiction detected | Points out logical issues using What/Why/How structure. |
-| **MIRROR** | Pattern repetition detected | Names the pattern. Guides self-awareness without concluding. |
+| **CLARIFY** | AI doesn't understand (< 0.7 comprehension) | Asks exactly one focused question. No analysis, no suggestions. Independent of ARCHE. |
+| **ARCHE·溯源** | Unexamined assumption or repeated pattern | Surfaces hidden premises. Makes the invisible visible. Invites examination. |
+| **ARCHE·推进** | Contradiction or clear goal | Points out logical inconsistency, or suggests a concrete direction. |
 
 ### Decision Engine
 
 Every turn, the AI runs this logic (first match wins):
 
 ```
-1. understanding_level < 0.7        → CLARIFY
-2. pattern_hits.contradiction ≠ []   → REFUTE
-3. pattern_hits.repetition ≠ []      → MIRROR
-4. actionable path exists            → SUGGEST
-5. otherwise                         → LISTEN
+1. comprehension < 0.7                          → CLARIFY
+2. user_state = emotional/narrative              → LISTEN
+3. arche_cooldown < 2                            → LISTEN
+4. Unexamined assumption (load-bearing)           → ARCHE·溯源
+5. Contradiction (premise surfaced)               → ARCHE·推进
+6. Same premise repeated ≥ 3 times               → ARCHE·溯源
+7. Premises sound + clear goal                    → ARCHE·推进
+8. Otherwise                                      → LISTEN
 ```
 
 LISTEN is the steady state. All other modes are transient departures that return to LISTEN.
